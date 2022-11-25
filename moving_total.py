@@ -26,7 +26,7 @@ def check_memory_complexity(func):
 
 class MovingTotal:
        
-    def __init__(self, window_size: int):
+    def __init__(self, window_size: int=3):
         self.numbers = []
         self.window = Deque([])
         self.moving_total = set()
@@ -64,7 +64,6 @@ class MovingTotal:
             self.numbers.extend(numbers)
             for i in range(last_len-2, len(self.numbers)-self.window_size+1):
                 self.moving_total.add(sum(self.numbers[i:i+self.window_size]))
-
 
 
     @check_time_complexity
