@@ -6,7 +6,7 @@ def check_time_complexity(func):
         start = time.time()
         result = func(*args, **kwargs)
         end = time.time()
-        print(f"Time taken by {func.__name__} is {end - start} seconds")
+        print(f"Time taken by {func.__name__} is {end - start} seconds\n")
         return result
     return wrapper
 
@@ -18,7 +18,8 @@ def check_memory_complexity(func):
         start = process.memory_info().rss
         result = func(*args, **kwargs)
         end = process.memory_info().rss
-        print(f"Memory taken by {func.__name__} is {end - start} bytes\n")
+        print(f"Memory taken by {func.__name__} is {end - start} bytes,  ~ {(end - start)/1024/1024/1024} GB  \n")
+
         return result
     return wrapper
 
@@ -94,15 +95,15 @@ class MovingTotal:
 if __name__ == "__main__":
     movingtotal = MovingTotal(window_size=3)
     
-    movingtotal.append([1, 2, 3, 4])
-    movingtotal.append_efficient([1, 2, 3, 4])
+    movingtotal.append_time_efficient([1, 2, 3, 4])
+    movingtotal.append_space_efficient([1, 2, 3, 4])
     print(movingtotal.contains(6))
     print(movingtotal.contains(9))
     print(movingtotal.contains(12))
     print(movingtotal.contains(7))
     
-    movingtotal.append([5])
-    movingtotal.append_efficient([5])
+    movingtotal.append_time_efficient([5])
+    movingtotal.append_space_efficient([5])
     print(movingtotal.contains(6))
     print(movingtotal.contains(9))
     print(movingtotal.contains(12))
@@ -111,8 +112,8 @@ if __name__ == "__main__":
 
     # append very very long list of numbers
     print("\nAppending very very long list of numbers to check time complexity of contains method\n")
-    movingtotal.append([i for i in range(10000000)])
-    movingtotal.append_efficient([i for i in range(10000000)])
+    movingtotal.append_time_efficient(list(range(10**7)))
+    movingtotal.append_space_efficient(list(range(10**7)))
     # check time complexity of contains
     
     print(movingtotal.contains(6))
