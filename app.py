@@ -8,7 +8,7 @@ st.write("## Feature Based Recommender System")
 
 @st.cache_data
 def load_data():
-    return pd.read_csv("./goodreads/books_clean.csv")
+    return pd.read_csv("./books_clean.csv")
 
 goodreads = load_data()
 
